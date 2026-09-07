@@ -2,7 +2,7 @@ export default function About() {
   return (
     <section id="about">
       <span className="eyebrow">Player Profile</span>
-      <h2 className="section-title">The Path Here</h2>
+      <h2 className="section-title">How I Got Here</h2>
 
       <div className="about-grid">
         <p className="about-lede">
