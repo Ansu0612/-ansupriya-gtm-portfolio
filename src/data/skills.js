@@ -99,6 +99,8 @@ export const gtmCapabilities = [
   },
 ]
 export const gtmOperatingSystem = [
-  'Market', 'ICP', 'Accounts', 'Research', 'Signals', 'Scoring',
-  'Activation', 'Pipeline', 'Measurement', 'Learning', 'Iteration',
+  { layer: 'INPUT', nodes: ['Market', 'ICP', 'Accounts'] },
+  { layer: 'INTELLIGENCE', nodes: ['Research', 'Signals', 'Scoring'] },
+  { layer: 'EXECUTION', nodes: ['Activation', 'Pipeline'] },
+  { layer: 'FEEDBACK LOOP', nodes: ['Measurement', 'Learning', 'Iteration'] },
 ]
