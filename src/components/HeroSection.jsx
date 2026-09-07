@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom'
 import Character from './Character.jsx'
 import { skillCategories } from '../data/skills.js'
+import { projects } from '../data/projects.js'
 
 const QUESTS = [
   'Turn data into actionable GTM insights',
@@ -12,17 +14,36 @@ const QUESTS = [
   'Measure what matters',
 ]
 
+const CAREER_FLOW = ['Sales', 'Revenue', 'Data', 'Research', 'GTM Engineering']
+
 export default function HeroSection() {
   return (
     <section id="home">
       <div className="hero">
         <div>
           <span className="hero-kicker">GTM ENGINEER</span>
-          <h1 className="hero-title">I turn data, research and market signals into GTM systems.</h1>
-          <p className="hero-copy">
-            I started in B2B SaaS sales, moved into revenue and data, worked across data and research,
-            and now build systems that connect ICP, account intelligence, buying signals, activation and pipeline.
-          </p>
+          <h1 className="hero-title">I build GTM systems that turn data + research + market signals into pipeline.</h1>
+
+          <div className="os-flow" style={{ marginTop: 22 }}>
+            {CAREER_FLOW.map((step, i) => (
+              <span key={step} style={{ display: 'contents' }}>
+                <span className="os-node">{step}</span>
+                {i < CAREER_FLOW.length - 1 && <span className="os-arrow">→</span>}
+              </span>
+            ))}
+          </div>
+
+          <div style={{ marginTop: 30 }}>
+            <span className="eyebrow" style={{ marginBottom: 12 }}>03 GTM Builds</span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+              {projects.map((p) => (
+                <Link key={p.id} to={`/projects/${p.id}`} className="pill" style={{ fontSize: '0.78rem', padding: '7px 14px' }}>
+                  {p.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <div className="btn-row">
             <a className="btn btn-primary" href="#quests">Enter My GTM World →</a>
             <a className="btn" href="#quests">View My Quests →</a>
@@ -49,7 +70,7 @@ export default function HeroSection() {
         </div>
 
         <div className="panel">
-          <div className="panel-title">PLAYER PROFILE</div>
+          <div className="panel-title">SYSTEM STATS</div>
           <div className="stat-grid">
             <div className="stat-block">
               <span className="stat-label">Class</span>
@@ -57,7 +78,7 @@ export default function HeroSection() {
             </div>
             <div className="stat-block">
               <span className="stat-label">Experience</span>
-              <span className="stat-value">3+ Years</span>
+              <span className="stat-value">3+ Years — Sales, Revenue &amp; Data</span>
             </div>
             <div className="stat-block" style={{ gridColumn: '1 / -1' }}>
               <span className="stat-label">Core Mode</span>
