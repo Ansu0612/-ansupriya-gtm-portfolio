@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { projects, sideQuests, analyticsQuests, lockedCaseStudies } from '../data/projects.js'
+import { projects, sideQuests, analyticsQuests } from '../data/projects.js'
 
 function QuestCard({ quest }) {
   return (
@@ -43,17 +43,6 @@ export default function QuestBoard() {
       <div className="quest-board-grid" style={{ marginTop: 22 }}>
         {sideQuests.map((p) => <QuestCard quest={p} key={p.id} />)}
         {analyticsQuests.map((p) => <QuestCard quest={p} key={p.id} />)}
-
-        <div className="quest-card locked" style={{ '--card-glow': 'var(--text-dim)' }}>
-          <span className="quest-card-tag">🔒 COMING SOON</span>
-          <h3 className="quest-card-title">{lockedCaseStudies.title}</h3>
-          <p className="quest-card-desc" style={{ marginTop: 12 }}>{lockedCaseStudies.copy}</p>
-          <div className="quest-card-visual" style={{ marginTop: 'auto' }}>
-            {lockedCaseStudies.flow.map((s, i) => (
-              <span key={s}>{s}{i < lockedCaseStudies.flow.length - 1 && ' → '}</span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   )
