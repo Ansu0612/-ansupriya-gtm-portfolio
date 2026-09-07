@@ -1,33 +1,53 @@
-// Pixel-art bust: long black hair, round glasses, calm confident expression.
-// Encoded as a grid so the same sprite is reused everywhere (hero, about, journey, etc.)
-// . empty  H hair  F face  G glasses frame  L lens  E eye  B shirt  C collar accent
-const GRID = [
-  '....HHHHHH....',
-  '...HHHHHHHH...',
-  '..HHHHHHHHHH..',
-  '.HHHHHHHHHHHH.',
-  '.HHFFFFFFFFHH.',
-  'HHFFFFFFFFFFHH',
-  'HFFGGGGGGGGFFH',
-  'HFFGELLLLEGFFH',
-  'HFFGGGGGGGGFFH',
-  '.HFFFFFFFFFFH.',
-  '..HFFFFFFFFH..',
-  '...HFFFFFFH...',
-  '....FFFFFF....',
-  '...BBBBBBBB...',
-  '..BBBBCCBBBB..',
-  '.BBBBBBBBBBBB.',
-  'BBBBBBBBBBBBBB',
-  'BBBBBBBBBBBBBB',
+// Pixel-art bust: long black hair past the shoulders, round glasses with a
+// visible frame + lens + pupil, calm confident expression, blazer with a
+// small accent. Built as mirrored half-rows (segments of [char, count]) so
+// row lengths are always correct, then mirrored left/right in code.
+// . empty  H hair  S skin  G glasses frame  L lens  P pupil  B blazer  C accent
+const HALF_ROWS = [
+  [['.', 3], ['H', 7]],                                   // r0  crown
+  [['.', 2], ['H', 8]],                                   // r1
+  [['.', 1], ['H', 9]],                                   // r2
+  [['H', 10]],                                             // r3
+  [['H', 10]],                                             // r4
+  [['H', 4], ['S', 6]],                                   // r5  hairline
+  [['H', 3], ['S', 7]],                                   // r6
+  [['H', 2], ['S', 8]],                                   // r7
+  [['H', 2], ['S', 8]],                                   // r8
+  [['H', 2], ['S', 8]],                                   // r9  temple
+  [['H', 2], ['S', 2], ['G', 6]],                         // r10 glasses top rim
+  [['H', 2], ['S', 2], ['G', 1], ['L', 2], ['P', 2], ['G', 1]], // r11 lens + pupil
+  [['H', 2], ['S', 2], ['G', 6]],                         // r12 glasses bottom rim
+  [['H', 2], ['S', 8]],                                   // r13 cheek
+  [['H', 2], ['S', 8]],                                   // r14 nose
+  [['H', 2], ['S', 8]],                                   // r15
+  [['H', 2], ['S', 6], ['P', 2]],                         // r16 mouth
+  [['H', 2], ['S', 8]],                                   // r17 chin
+  [['H', 1], ['S', 9]],                                   // r18 jaw
+  [['H', 1], ['S', 9]],                                   // r19 chin point
+  [['H', 2], ['S', 8]],                                   // r20 neck
+  [['H', 2], ['S', 3], ['B', 5]],                         // r21 shoulders begin
+  [['H', 2], ['B', 8]],                                   // r22
+  [['H', 2], ['B', 7], ['C', 1]],                         // r23 accent at center
+  [['H', 1], ['B', 9]],                                   // r24 hair ends
+  [['B', 10]],                                             // r25 blazer
 ]
 
+function expand(segments) {
+  return segments.map(([ch, n]) => ch.repeat(n)).join('')
+}
+
+const GRID = HALF_ROWS.map((segments) => {
+  const half = expand(segments)
+  const mirrored = [...half].reverse().join('')
+  return half + mirrored
+})
+
 const PALETTE = {
-  H: '#171423',
-  F: '#f2c9a4',
+  H: '#151225',
+  S: '#f0c8a0',
   G: '#f4f1e8',
-  L: '#1c2b3a',
-  E: '#171423',
+  L: '#274156',
+  P: '#0d0c14',
   B: '#20233a',
   C: '#ff3d81',
 }
