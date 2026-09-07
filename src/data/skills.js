@@ -63,6 +63,41 @@ export const skillCategories = [
   },
 ]
 
+
+// Capability-oriented view for the Power-Ups section, per audit feedback —
+// "what I can build" rather than a flat skills list.
+export const gtmCapabilities = [
+  {
+    name: 'ICP & TAM',
+    chain: ['Define ICP', 'Build TAM', 'Segment', 'Prioritize'],
+    tools: ['ICP Definition', 'TAM Research', 'Segmentation', 'GTM Hypotheses', 'Funnel Thinking'],
+  },
+  {
+    name: 'Account Intelligence',
+    chain: ['Research', 'Enrich', 'Identify Personas', 'Score Accounts'],
+    tools: ['Account Research', 'Data Enrichment', 'Firmographic Analysis', 'Persona Research', 'Account Scoring'],
+  },
+  {
+    name: 'Signal Intelligence',
+    chain: ['Trigger', 'Context', 'Intent', 'Action'],
+    tools: ['Buying Signals', 'Trigger-Event Research', 'Signal-to-Action Mapping'],
+  },
+  {
+    name: 'ABM & Outbound',
+    chain: ['Account Selection', 'Personalization', 'Sequencing'],
+    tools: ['ABM Strategy', 'Personalization', 'Outbound Research', 'Sequencing', 'Campaign Design'],
+  },
+  {
+    name: 'Automation',
+    chain: ['Research', 'Enrichment', 'Routing', 'Activation'],
+    tools: ['Clay', 'Make', 'n8n', 'AI-Assisted Research', 'Workflow Automation'],
+  },
+  {
+    name: 'Revenue Analytics',
+    chain: ['Pipeline', 'Conversion', 'Performance', 'Iteration'],
+    tools: ['SQL / MySQL', 'Power BI', 'AWS QuickSight', 'Python', 'Looker Studio', 'KPI Reporting'],
+  },
+]
 export const gtmOperatingSystem = [
   'Market', 'ICP', 'Accounts', 'Research', 'Signals', 'Scoring',
   'Activation', 'Pipeline', 'Measurement', 'Learning', 'Iteration',
