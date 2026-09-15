@@ -1,42 +1,50 @@
-export const troubleshootingScenarios = [
-  {
-    symptom: 'Lots of leads. No pipeline.',
-    investigate: ['ICP', 'Qualification', 'Signal', 'Messaging', 'Sales Handoff'],
-    detail: {
-      hypothesis: 'Volume is being optimized for instead of fit.',
-      evidence: 'Compare lead-to-opportunity conversion by ICP tier, not in aggregate.',
-      rootCause: 'Often a qualification or handoff gap, not a lead-generation gap.',
-      experiment: 'Tighten ICP filters, re-score the existing lead pool, and re-test conversion on the top tier only.',
-    },
-  },
-  {
-    symptom: 'Outbound activity is high. Meetings are low.',
-    investigate: ['Targeting', 'Timing', 'Relevance', 'Persona', 'Offer'],
-    detail: {
-      hypothesis: 'The message is reaching the wrong person, or the right person at the wrong moment.',
-      evidence: 'Break down reply and meeting rates by persona and by account signal recency.',
-      rootCause: 'Usually a relevance or timing problem rather than a volume problem.',
-      experiment: 'Re-sequence outbound around a specific trigger signal instead of a fixed cadence.',
-    },
-  },
-  {
-    symptom: 'Meetings happen. Opportunities don\'t.',
-    investigate: ['Problem Fit', 'Qualification', 'Discovery', 'Use Case', 'Buying Process'],
-    detail: {
-      hypothesis: 'The meeting was booked on interest, not on a validated problem.',
-      evidence: 'Review discovery call notes for a clearly stated business problem and buying process.',
-      rootCause: 'Discovery is confirming interest instead of qualifying problem and process.',
-      experiment: 'Add a structured discovery framework before any opportunity is created in the pipeline.',
-    },
-  },
-  {
-    symptom: 'Good accounts. Poor response.',
-    investigate: ['Signal', 'Context', 'Message', 'Channel', 'Timing'],
-    detail: {
-      hypothesis: 'The account is a fit, but the outreach isn\'t anchored to why now.',
-      evidence: 'Check whether messaging references an account-specific signal or is generic across the list.',
-      rootCause: 'Personalization is surface-level (name, company) instead of context-level (why this account, why now).',
-      experiment: 'Rebuild the top 10 accounts\' outreach around one specific signal each and compare response rates.',
-    },
-  },
-]
+import { useState } from 'react'
+import { troubleshootingScenarios } from '../data/troubleshooting.js'
+
+function TroubleCard({ scenario }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <button
+      type="button"
+      className="trouble-card"
+      onClick={() => setOpen((v) => !v)}
+      aria-expanded={open}
+      style={{ textAlign: 'left', width: '100%', border: '2px solid var(--panel-border)' }}
+    >
+      <div className="trouble-symptom">"{scenario.symptom}"</div>
+      <div className="trouble-flow">
+        {scenario.investigate.map((s, i) => (
+          <span key={s}>{s}{i < scenario.investigate.length - 1 && ' → '}</span>
+        ))}
+      </div>
+      {open && (
+        <div className="trouble-detail">
+          <div><strong>Hypotheses</strong></div>
+          <ol style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 4 }}>
+            {scenario.hypotheses.map((h) => (
+              <li key={h} style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{h}</li>
+            ))}
+          </ol>
+          <div><strong>Data I'd check:</strong> {scenario.dataToCheck}</div>
+          <div><strong>Experiment:</strong> {scenario.experiment}</div>
+          <div><strong>Expected signal:</strong> {scenario.expectedSignal}</div>
+        </div>
+      )}
+      <div className="trouble-toggle">{open ? '– Collapse' : '+ Investigate'}</div>
+    </button>
+  )
+}
+
+export default function TroubleshootingLab() {
+  return (
+    <section id="troubleshooting">
+      <span className="eyebrow">🛠 GTM Troubleshooting Lab</span>
+      <h2 className="section-title">Symptom → Hypothesis → Root Cause</h2>
+      <p className="section-sub">How I diagnose a GTM motion before touching the fix.</p>
+
+      <div className="trouble-grid">
+        {troubleshootingScenarios.map((s) => <TroubleCard scenario={s} key={s.symptom} />)}
+      </div>
+    </section>
+  )
+}
