@@ -17,23 +17,6 @@ export default function Journey() {
               <div className="journey-org">{lvl.org}</div>
               <div className="journey-theme">{lvl.theme}</div>
               {lvl.roles.map((role) => (
-                <div key={role.title} style={{ marginBottom: 18 }}>
+                <div key={role.title} style={{ marginBottom: 16 }}>
                   <div className="journey-role">{role.title} · {role.company} · {role.dates}</div>
-                  <ul className="journey-points">
-                    {role.points.map((p) => <li key={p}>{p}</li>)}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="journey-current">
-        <span className="eyebrow" style={{ marginBottom: 10 }}>{currentLevel.level}</span>
-        <h3 style={{ fontSize: '1.5rem', color: 'var(--cream)' }}>{currentLevel.title}</h3>
-        <p style={{ marginTop: 10, color: 'var(--text-muted)' }}>{currentLevel.copy}</p>
-      </div>
-    </section>
-  )
-}
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.6, marginTop: 6 }}>
