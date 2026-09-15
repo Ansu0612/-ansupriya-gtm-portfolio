@@ -28,8 +28,11 @@ export default function Contact() {
       <span className="eyebrow">Ready for the next quest?</span>
       <h2 className="section-title">Let's talk GTM.</h2>
       <p className="section-sub">
-        I'm interested in problems across GTM Engineering, ABM, Revenue Operations, Growth, Sales Intelligence and GTM Automation.
-        If you're building a GTM motion and need someone who can connect data, research, systems and execution — let's talk.
+        I'm looking for GTM Engineering opportunities where I can work across account intelligence,
+        automation, research and revenue systems.
+      </p>
+      <p className="section-sub" style={{ marginTop: 10 }}>
+        If you're building a GTM motion and need someone who can connect data, research and execution — let's talk.
       </p>
 
       <div className="contact-grid">
@@ -55,13 +58,4 @@ export default function Contact() {
         </form>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'flex-start' }}>
-          <a className="btn" href={socialLinks.linkedin} target="_blank" rel="noreferrer">Connect on LinkedIn →</a>
-          {socialLinks.github && (
-            <a className="btn" href={socialLinks.github} target="_blank" rel="noreferrer">View GitHub →</a>
-          )}
-          <a className="btn btn-ghost" href={`mailto:${socialLinks.email}`}>Email directly →</a>
-        </div>
-      </div>
-    </section>
-  )
-}
+          <a className="btn"
