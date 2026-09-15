@@ -1,42 +1,57 @@
-import { journeyLevels, currentLevel } from '../data/journey.js'
+export const journeyLevels = [
+  {
+    level: 'LEVEL 01',
+    org: 'B2B SaaS',
+    theme: 'Customer + Sales Thinking',
+    roles: [
+      {
+        title: 'Sale Engineer',
+        company: 'Sparity IT Services and IT Consulting',
+        dates: 'Jan 2023 – Jul 2023',
+        summary: 'Researched US-market prospects and decision-makers, and contributed to email campaigns for US healthcare accounts.',
+        tools: ['Prospect Research', 'Email Campaigns', 'Decision-Maker Mapping'],
+      },
+      {
+        title: 'Product Growth Executive',
+        company: 'Apxor Technologies Private Limited',
+        dates: 'Jul 2023 – Mar 2025',
+        summary: 'Ran 60+ product demos, built prospect lists from account research, and combined that research with Product/CSM teams — contributing to a 25% lift in activation.',
+        tools: ['Account Research', 'Segmentation', 'Product Demos', 'Customer Feedback Loops'],
+      },
+    ],
+  },
+  {
+    level: 'LEVEL 02',
+    org: 'Hospitality',
+    theme: 'Revenue + Analytical Thinking',
+    roles: [
+      {
+        title: 'Data & Revenue Analyst',
+        company: 'Quantum Revenue Solutions',
+        dates: 'Apr 2025 – Dec 2025',
+        summary: 'Built a MySQL database to centralize PMS and OTA data (65% faster retrieval), automated recurring reporting, and analyzed pricing and revenue performance across 30+ properties.',
+        tools: ['MySQL', 'Python', 'Excel', 'Revenue Analytics'],
+      },
+    ],
+  },
+  {
+    level: 'LEVEL 03',
+    org: 'Media / Transmission',
+    theme: 'Research + Signal Thinking',
+    roles: [
+      {
+        title: 'Data & Research Analyst',
+        company: 'India Infrastructure Publication',
+        dates: 'Dec 2025 – Jun 2026',
+        summary: 'Consolidated data from 100+ transmission projects and 45+ utility annual reports, and built AWS QuickSight dashboards tracking performance and investment across global markets.',
+        tools: ['AWS QuickSight', 'Excel', 'Power Query', 'Data Consolidation'],
+      },
+    ],
+  },
+]
 
-export default function Journey() {
-  return (
-    <section id="journey">
-      <span className="eyebrow">Player Journey</span>
-      <h2 className="section-title">Four Levels, One Skill Set</h2>
-      <p className="section-sub">
-        Sales, revenue, research and GTM engineering — not disconnected career changes, but one skill set built in stages.
-      </p>
-
-      <div className="journey-track">
-        {journeyLevels.map((lvl) => (
-          <div className="journey-level" key={lvl.level}>
-            <div className="journey-marker">{lvl.level}</div>
-            <div className="journey-body">
-              <div className="journey-org">{lvl.org}</div>
-              <div className="journey-theme">{lvl.theme}</div>
-              {lvl.roles.map((role) => (
-                <div key={role.title} style={{ marginBottom: 16 }}>
-                  <div className="journey-role">{role.title} · {role.company} · {role.dates}</div>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.6, marginTop: 6 }}>
-                    {role.summary}
-                  </p>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 10 }}>
-                    {role.tools.map((t) => <span className="pill" key={t}>{t}</span>)}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="journey-current">
-        <span className="eyebrow" style={{ marginBottom: 10 }}>{currentLevel.level}</span>
-        <h3 style={{ fontSize: '1.5rem', color: 'var(--cream)' }}>{currentLevel.title}</h3>
-        <p style={{ marginTop: 10, color: 'var(--text-muted)' }}>{currentLevel.copy}</p>
-      </div>
-    </section>
-  )
+export const currentLevel = {
+  level: 'CURRENT LEVEL',
+  title: 'GTM Engineer',
+  copy: 'Building systems that connect market intelligence to GTM action.',
 }
