@@ -6,12 +6,22 @@ export default function GTMOS() {
       <span className="eyebrow">System</span>
       <h2 className="section-title">My GTM Operating System</h2>
 
-      <div className="os-flow">
-        {gtmOperatingSystem.map((node, i) => (
-          <span key={node} style={{ display: 'contents' }}>
-            <span className="os-node">{node}</span>
-            {i < gtmOperatingSystem.length - 1 && <span className="os-arrow">→</span>}
-          </span>
+      <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 20 }}>
+        {gtmOperatingSystem.map((group, i) => (
+          <div key={group.layer}>
+            <div className="eyebrow" style={{ marginBottom: 12 }}>{group.layer}</div>
+            <div className="os-flow" style={{ marginTop: 0 }}>
+              {group.nodes.map((node, j) => (
+                <span key={node} style={{ display: 'contents' }}>
+                  <span className="os-node">{node}</span>
+                  {j < group.nodes.length - 1 && <span className="os-arrow">→</span>}
+                </span>
+              ))}
+            </div>
+            {i < gtmOperatingSystem.length - 1 && (
+              <div style={{ marginTop: 16, color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>↓</div>
+            )}
+          </div>
         ))}
       </div>
 
