@@ -20,3 +20,23 @@ export default function Journey() {
                 <div key={role.title} style={{ marginBottom: 16 }}>
                   <div className="journey-role">{role.title} · {role.company} · {role.dates}</div>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.6, marginTop: 6 }}>
+                    {role.summary}
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 10 }}>
+                    {role.tools.map((t) => <span className="pill" key={t}>{t}</span>)}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="journey-current">
+        <span className="eyebrow" style={{ marginBottom: 10 }}>{currentLevel.level}</span>
+        <h3 style={{ fontSize: '1.5rem', color: 'var(--cream)' }}>{currentLevel.title}</h3>
+        <p style={{ marginTop: 10, color: 'var(--text-muted)' }}>{currentLevel.copy}</p>
+      </div>
+    </section>
+  )
+}
