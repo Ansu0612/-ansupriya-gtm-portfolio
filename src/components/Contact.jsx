@@ -58,4 +58,16 @@ export default function Contact() {
         </form>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'flex-start' }}>
-          <a className="btn"
+          <a className="btn" href={socialLinks.linkedin} target="_blank" rel="noreferrer">Connect on LinkedIn →</a>
+          {socialLinks.github && (
+            <a className="btn" href={socialLinks.github} target="_blank" rel="noreferrer">View GitHub →</a>
+          )}
+          <a className="btn btn-ghost" href={`mailto:${socialLinks.email}`}>Email directly →</a>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: 4 }}>
+            {socialLinks.email}
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
