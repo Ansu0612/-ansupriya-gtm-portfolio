@@ -25,7 +25,7 @@
 
   --radius-notch: 10px;
   --shell-pad: clamp(20px, 5vw, 72px);
-  --section-gap: clamp(64px, 10vw, 128px);
+  --section-gap: clamp(40px, 6vw, 88px);
 }
 
 * { box-sizing: border-box; }
@@ -50,7 +50,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* subtle starfield / grid texture, no images, cheap to render */
 .app-shell {
   min-height: 100vh;
   background-image:
@@ -620,24 +619,6 @@ section:last-of-type { padding-bottom: var(--section-gap); }
 .playbook-body { margin-top: 14px; color: var(--text-muted); font-size: 0.92rem; max-width: 640px; }
 
 /* =========================================================
-   TRANSMISSIONS
-   ========================================================= */
-.transmission-grid {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 18px;
-}
-.transmission-card {
-  border: 1px solid var(--panel-border);
-  background: var(--bg-raised);
-  padding: 20px;
-}
-.transmission-id { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-dim); }
-.transmission-title { margin-top: 10px; font-size: 0.98rem; color: var(--cream); font-weight: 600; line-height: 1.4; }
-.transmission-link { margin-top: 16px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--blue); }
-
-/* =========================================================
    CONTACT
    ========================================================= */
 .contact-grid {
@@ -663,6 +644,19 @@ section:last-of-type { padding-bottom: var(--section-gap); }
   outline-offset: 1px;
 }
 .contact-status { font-family: var(--font-mono); font-size: 0.78rem; color: var(--green); min-height: 18px; }
+
+.contact-links { display: flex; flex-direction: column; gap: 16px; }
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+}
+.contact-link:hover, .contact-link:focus-visible { color: var(--pink); }
+.contact-link svg { flex-shrink: 0; }
 
 /* =========================================================
    FOOTER
@@ -754,4 +748,41 @@ section:last-of-type { padding-bottom: var(--section-gap); }
   font-size: 0.78rem;
   color: var(--text-muted);
   border-top: 1px solid var(--line);
+}
+
+/* =========================================================
+   CHARACTER AVATAR (image-based, animated)
+   ========================================================= */
+.character-avatar {
+  filter: drop-shadow(0 0 18px var(--character-glow, var(--pink)));
+  animation: charWalkIn 0.9s ease-out both,
+             charLife 9s ease-in-out 0.9s infinite;
+}
+
+@keyframes charWalkIn {
+  0%   { opacity: 0; transform: translateX(-40px) scale(0.94); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes charLife {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); }
+  8%   { transform: translateY(-8px) rotate(0deg) scale(1); }
+  16%  { transform: translateY(0) rotate(0deg) scale(1); }
+  25%  { transform: translateY(-8px) rotate(0deg) scale(1); }
+  33%  { transform: translateY(0) rotate(0deg) scale(1); }
+  41%  { transform: translateY(-8px) rotate(0deg) scale(1); }
+  50%  { transform: translateY(0) rotate(0deg) scale(1); }
+  58%  { transform: translateY(-8px) rotate(0deg) scale(1); }
+  66%  { transform: translateY(0) rotate(0deg) scale(1); }
+  74%  { transform: translateY(-8px) rotate(0deg) scale(1); }
+  82%  { transform: translateY(0) rotate(0deg) scale(1); }
+  88%  { transform: translateY(0) rotate(0deg) scale(1); }
+  91%  { transform: translateY(-2px) rotate(-4deg) scale(1.04); }
+  94%  { transform: translateY(-2px) rotate(3deg) scale(1.03); }
+  97%  { transform: translateY(-2px) rotate(-2deg) scale(1.01); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .character-avatar { animation: none; }
 }
